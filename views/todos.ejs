@@ -1,0 +1,25 @@
+
+<%- include ('../partials/header.ejs') %>
+<h3 style="text-align: center; text-transform: uppercase;"> To-do App  </h3>
+<br>
+<div class="container" style="width: 40%;">
+    <form class="form-group" action="/todo/add" method="POST">
+        <label> Add an item </label>
+        <input type="text" name="item"> 
+        <button  class="btn btn-primary" type="submit"> Add </button>
+    </form>
+    <ul class="list-group">
+        <% todos.forEach(todo => { %>
+            <li class="list-group-item list-group-item-success" style="display: flex; align-items: center;"> 
+                <span><%= todo.item %> </span>
+                <form style="margin-left: auto ; margin-right: 1.5rem;" action="todo/remove/<%=todo._id %>?_method=delete" method="POST">
+                    <button class="btn btn-danger" style="display: inline-block;"> Delete </button>
+                </form>
+                
+            </li>
+        <%}) %>
+    </ul>
+</div>
+
+
+<%- include ('../partials/footer.ejs') %>
